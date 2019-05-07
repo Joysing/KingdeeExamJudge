@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kingdee.exam.judger.exception.IllegalSubmissionException;
 import com.kingdee.exam.judger.model.Checkpoint;
 
 import org.apache.commons.io.FileUtils;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.kingdee.exam.judger.application.ApplicationDispatcher;
-import com.kingdee.exam.judger.exception.IllgealSubmissionException;
 import com.kingdee.exam.judger.mapper.CheckpointMapper;
 import com.kingdee.exam.judger.mapper.SubmissionMapper;
 import com.kingdee.exam.judger.model.Submission;
@@ -44,10 +44,10 @@ public class Dispatcher {
 	 * 创建新的评测任务.
 	 * 每次只运行一个评测任务.
 	 * @param submissionId - 提交记录的唯一标识符
-	 * @throws IllgealSubmissionException 无效的提交记录异常
+	 * @throws IllegalSubmissionException 无效的提交记录异常
 	 * @throws InterruptedException Thread中断异常
 	 */
-	public void createNewTask(long submissionId) throws IllgealSubmissionException, InterruptedException {
+	public void createNewTask(long submissionId) throws IllegalSubmissionException, InterruptedException {
 		synchronized(this) {
 			String baseDirectory = String.format("%s/voj-%s", workBaseDirectory, submissionId);
 			String baseFileName = DigestUtils.getRandomString(12, DigestUtils.Mode.ALPHA);
@@ -61,10 +61,10 @@ public class Dispatcher {
 			} while ( submission == null && ++ tryTimes <= 3 );
 			
 			if ( submission == null ) {
-				throw new IllgealSubmissionException(
+				throw new IllegalSubmissionException(
 						String.format("无效的submission #%s",submissionId));
 			}
-			preprocess(submission, baseDirectory, baseFileName);
+			preProcess(submission, baseDirectory, baseFileName);
 			if ( compile(submission, baseDirectory, baseFileName) ) {
 				runProgram(submission, baseDirectory, baseFileName);
 			}
@@ -80,7 +80,7 @@ public class Dispatcher {
 	 * @param workDirectory - 用于产生编译输出的目录
 	 * @param baseFileName - 随机文件名(不包含后缀)
 	 */
-	private void preprocess(Submission submission,
+	private void preProcess(Submission submission,
 							String workDirectory, String baseFileName) {
 		try {
 			long problemId = submission.getProblem().getProblemId();
@@ -173,7 +173,7 @@ public class Dispatcher {
 			runtimeResultSlug = "WA";
 			result.put("runtimeResult", runtimeResultSlug);
 		}
-		LOGGER.info(String.format("运行结果: [%s, Time: %d ms, Memory: %d KB]",
+		LOGGER.info(String.format("运行结果: [%s, 所用时间: %d ms, 所用内存: %d KB]",
                 runtimeResultSlug, usedTime, usedMemory));
 
 		return result;
@@ -210,42 +210,33 @@ public class Dispatcher {
 	}
 
 	/**
-	 * 自动注入的ApplicationDispatcher对象.
 	 * 完成每个阶段的任务后推送消息至消息队列.
 	 */
 	private final ApplicationDispatcher applicationDispatcher;
 
 	/**
-	 * 自动注入的Preprocessor对象.
 	 * 完成编译前的准备工作.
 	 */
 	private final Preprocessor preprocessor;
 
 	/**
-	 * 自动注入的Compiler对象.
 	 * 完成编译工作.
 	 */
 	private final Compiler compiler;
 
 	/**
-	 * 自动注入的Runner对象.
 	 * 完成程序运行工作.
 	 */
 	private final Runner runner;
 
 	/**
-	 * 自动注入的Matcher对象.
 	 * 完成输出结果比对工作.
 	 */
 	private final Comparator comparator;
 
-	/**
-	 * 自动注入的SubmissionMapper对象.
-	 */
 	private final SubmissionMapper submissionMapper;
 
 	/**
-	 * 自动注入的CheckpointMapper对象.
 	 * 用于获取试题的测试点.
 	 */
 	private final CheckpointMapper checkpointMapper;
@@ -264,8 +255,5 @@ public class Dispatcher {
 	@Value("${judger.checkpointDir}")
 	private String checkpointDirectory;
 
-	/**
-	 * 日志记录器.
-	 */
 	private static final Logger LOGGER = LogManager.getLogger(Dispatcher.class);
 }

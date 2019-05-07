@@ -25,7 +25,6 @@ public class MessageSender {
 	}
 
 	/**
-	 * 自动注入的JmsTemplate对象.
 	 * 用于发送消息至消息队列.
 	 */
 	private final JmsTemplate jmsTemplate;

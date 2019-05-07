@@ -52,13 +52,9 @@ public class MessageReceiver implements MessageListener {
 	}
 	
 	/**
-	 * 自动注入的ApplicationDispatcher对象.
 	 * 用于完成接收消息后的回调操作.
 	 */
 	private final ApplicationDispatcher dispatcher;
-	
-	/**
-	 * 日志记录器.
-	 */
+
 	private static final Logger LOGGER = LogManager.getLogger(MessageReceiver.class);
 }

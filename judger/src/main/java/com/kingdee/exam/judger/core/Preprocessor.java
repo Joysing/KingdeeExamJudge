@@ -43,7 +43,7 @@ public class Preprocessor {
                         String workDirectory, String baseFileName) throws Exception {
 		File workDirFile = new File(workDirectory);
 		if ( !workDirFile.exists() && !workDirFile.mkdirs() ) {
-			throw new CreateDirectoryException("Failed to create directory: " + workDirectory);
+			throw new CreateDirectoryException("创建文件夹失败: " + workDirectory);
 		}
 		setWorkDirectoryPermission(workDirFile);
 		
@@ -121,7 +121,7 @@ public class Preprocessor {
                 checkpointDirectory, problemId);
 		File checkpointsDirFile = new File(checkpointsFilePath);
 		if ( !checkpointsDirFile.exists() && !checkpointsDirFile.mkdirs() ) {
-			throw new CreateDirectoryException("Failed to create the checkpoints directory: " + checkpointsFilePath);
+			throw new CreateDirectoryException("创建测试用例文件夹失败: " + checkpointsFilePath);
 		}
 		
 		List<Checkpoint> checkpoints = 
@@ -148,7 +148,6 @@ public class Preprocessor {
 	}
 	
 	/**
-	 * 自动注入的CheckpointMapper对象.
 	 * 用于获取试题的测试点.
 	 */
 	private final CheckpointMapper checkpointMapper;

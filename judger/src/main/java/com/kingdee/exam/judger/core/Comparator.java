@@ -103,8 +103,5 @@ public class Comparator {
 		return true;
 	}
 	
-	/**
-	 * 日志记录器.
-	 */
 	private static final Logger LOGGER = LogManager.getLogger(Comparator.class);
 }

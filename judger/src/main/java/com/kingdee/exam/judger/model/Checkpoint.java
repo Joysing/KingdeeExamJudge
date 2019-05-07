@@ -13,11 +13,6 @@ import java.io.Serializable;
 @Setter
 public class Checkpoint implements Serializable {
 
-	public String toString() {
-		return String.format("CheckPoint [ProblemId=%d, CheckpointId=%d, Score=%d]",
-                problemId, checkpointId, score);
-	}
-
 	/**
 	 * 试题的唯一标识符.
 	 */

@@ -14,12 +14,4 @@ public class User {
 	private String phone;
 	private String code;
 	private boolean enabled;
-
-	public boolean equals(Object obj) {
-		if ( obj instanceof User ) {
-			User anotherUser = (User)obj;
-			return anotherUser.getUserId().equals(userId);
-		}
-		return false;
-	}
 }

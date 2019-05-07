@@ -12,14 +12,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Problem implements Serializable {
-	@Override
-	public String toString() {
-		return String.format("Problem: [ProblemID=%s, isPublic=%s, ProblemName=%s, TimeLimit=%s, "
-							+ "MemoryLimit=%s, Description=%s, InputFormat=%s, OutputFormat=%s, " 
-							+ "SampleInput=%s, SampleOutput=%s, Hint=%s]",
-                problemId, isPublic, problemName, timeLimit, memoryLimit,
-                description, inputFormat, outputFormat, sampleInput, sampleOutput, hint);
-	}
 
 	/**
 	 * 试题的唯一标识符.

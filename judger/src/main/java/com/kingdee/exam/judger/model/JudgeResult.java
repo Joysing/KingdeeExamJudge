@@ -12,11 +12,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class JudgeResult implements Serializable {
-	@Override
-	public String toString() {
-		return String.format("JudgeResult [Id=%d, Slug=%s, Name=%s]",
-                judgeResultId, judgeResultSlug, judgeResultName);
-	}
 
 	/**
 	 * 评测结果的唯一标识符.

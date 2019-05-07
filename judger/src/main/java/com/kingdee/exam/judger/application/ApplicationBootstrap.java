@@ -18,6 +18,8 @@ import com.kingdee.exam.judger.model.Language;
  * 程序测评模块的加载器.
  */
 public class ApplicationBootstrap {
+    private ApplicationContext applicationContext;
+    private static final Logger LOGGER = LogManager.getLogger(ApplicationBootstrap.class);
 	/**
 	 * 应用程序入口.
 	 */
@@ -139,13 +141,4 @@ public class ApplicationBootstrap {
 		return " --version";
 	}
 	
-	/**
-	 * 应用程序配置.
-	 */
-	private ApplicationContext applicationContext;
-	
-	/**
-	 * 日志记录器.
-	 */
-	private static final Logger LOGGER = LogManager.getLogger(ApplicationBootstrap.class);
 }

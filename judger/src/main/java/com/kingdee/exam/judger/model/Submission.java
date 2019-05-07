@@ -49,15 +49,7 @@ public class Submission implements Serializable {
 		this.judgeLog = judgeLog;
 		this.code = code;
 	}
-	@Override
-	public String toString() {
-		return String.format("Submission [ID=%d, Problem={%s}, Uid={%s}, Language={%s}, SubmitTime={%s}, "
-				+ "ExecuteTime={%s}, UsedTime=%d, UsedMemory=%d, JudgeResultSlug={%s}, JudgeScore=%d, "
-				+ "JudgeLog=%s, Code=%s]",
-                submissionId, problem, uid, language, submitTime, executeTime, usedTime, usedMemory,
-                judgeResultSlug, judgeScore, judgeLog, code);
-	}
-	
+
 	/**
 	 * 评测记录的唯一标识符. 
 	 */

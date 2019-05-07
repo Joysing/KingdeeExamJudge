@@ -64,40 +64,32 @@ public class ApplicationHeartbeat implements Runnable {
 	}
 	
 	/**
-	 * 评测机身份信息.
 	 * 评测机的用户名.
 	 */
 	@Value("${judger.username}")
 	private String judgerUsername;
 	
 	/**
-	 * 评测机身份信息.
 	 * 评测机的密码.
 	 */
 	@Value("${judger.password}")
 	private String judgerPassword;
 	
 	/**
-	 * 评测机身份信息.
-	 * 评测机的密码.
+	 * 评测机的描述.
 	 */
 	@Value("${judger.description}")
 	private String judgerDescription;
 	
 	/**
-	 * 自动注入的MessageSender对象.
 	 * 用于向消息队列发送消息.
 	 */
 	private final MessageSender messageSender;
 	
 	/**
-	 * 自动注入的UserMapper对象.
 	 * 用于验证评测机的身份信息.
 	 */
 	private final UserMapper userMapper;
 	
-	/**
-	 * 日志记录器.
-	 */
 	private static final Logger LOGGER = LogManager.getLogger(ApplicationHeartbeat.class);
 }

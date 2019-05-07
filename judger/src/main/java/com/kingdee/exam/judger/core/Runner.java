@@ -116,7 +116,7 @@ public class Runner {
 	 */
 	private String getRuntimeResultSlug(int exitCode, int timeLimit, int timeUsed, int memoryLimit, int memoryUsed) {
 		if ( exitCode == 0 ) {
-			// Output will be compared in next stage
+			// 将在下一步进行输出结果的比较
 			return "AC";
 		}
 		if ( timeUsed >= timeLimit ) {
@@ -178,9 +178,6 @@ public class Runner {
 	@Value("${system.password}")
 	private String systemPassword;
 
-	/**
-	 * 日志记录器.
-	 */
 	private static final Logger LOGGER = LogManager.getLogger(Runner.class);
 
 	static {

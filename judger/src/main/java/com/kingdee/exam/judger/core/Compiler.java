@@ -74,7 +74,7 @@ public class Compiler {
         int timeLimit = 5000;
 		int memoryLimit = 0;
 		
-		LOGGER.info("Start compiling with command: " + commandLine);
+		LOGGER.info("正在使用命令 " + commandLine + " 编译...");
 		Map<String, Object> runningResult = compilerRunner.getRuntimeResult(
 				commandLine, compileLogPath, timeLimit, memoryLimit);
 		Map<String, Object> result = new HashMap<>(3, 1);
@@ -101,20 +101,15 @@ public class Compiler {
 			inputStream = new FileInputStream(compileLogPath);
 			compileLog = IOUtils.toString(inputStream);
 			inputStream.close();
-		} catch (Exception ex) {
-			// Do nothing
+		} catch (Exception ignored) {
 		}
 		return compileLog;
 	}
 	
 	/**
-	 * 自动注入的Runner对象.
 	 * 用于执行编译命令.
 	 */
 	private final Runner compilerRunner;
 	
-	/**
-	 * 日志记录器.
-	 */
 	private static final Logger LOGGER = LogManager.getLogger(Compiler.class);
 }

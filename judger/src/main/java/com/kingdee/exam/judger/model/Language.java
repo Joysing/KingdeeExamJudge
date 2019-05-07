@@ -12,12 +12,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Language implements Serializable {
-	@Override
-	public String toString() {
-		return String.format("Language [ID=%d, Slug=%s, Name=%s, CompileCommand=%s, runCommand=%s]",
-                languageId, languageSlug, languageName, compileCommand, runCommand);
-	}
-	
+
 	/**
 	 * 编程语言的唯一标识符. 
 	 */
