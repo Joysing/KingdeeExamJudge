@@ -1,3 +1,6 @@
+前台地址（考试系统）https://github.com/Joysing/KingdeeExam
+考试系统依赖于本程序
+
 **Windows**:
 
 ```
